@@ -5,9 +5,8 @@
 import numpy
 import random
 
-Size = 4
-Matrix = numpy.zeros([Size, Size])
-Score = 0
+Size = 4    # 4x4矩阵尺寸
+Matrix = numpy.zeros([Size, Size])  # 初始化矩阵4*4的0矩阵
 
 
 class UpdateNew(object):
@@ -102,11 +101,11 @@ class GameInit(object):
     @staticmethod
     def getRandomLocal(zerolist=None):
         if zerolist is None:
-            a = random.randint(0, Size-1)
+            a = random.randint(0, Size-1)  # 初始化时在0矩阵中随机挑选一个位置
             b = random.randint(0, Size-1)
         else:
-            a, b = random.sample(zerolist, 1)[0]
-        return a, b
+            a, b = random.sample(zerolist, 1)[0]  # 在0的位置随机选一个位置
+        return a, b  # 返回行数、列数
 
     @staticmethod
     def getNewNum():
@@ -114,13 +113,13 @@ class GameInit(object):
         if n > 0.8:
             n = 4
         else:
-            n = 2
+            n = 2  # 80%的概率在0的位置上放2
         return n
 
     @classmethod
     def initData(cls, Size, matrix=None, zerolist=None):
         if matrix is None:
-            matrix = Matrix.copy()
+            matrix = Matrix.copy()  # 游戏初始化则复制一个0矩阵
         a, b = cls.getRandomLocal(zerolist)
         n = cls.getNewNum()
         matrix[a][b] = n
